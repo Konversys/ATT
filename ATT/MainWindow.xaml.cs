@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATT.Model.Database;
+using ATT.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,19 @@ namespace ATT
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int product { get; private set; }
+        public static int ATT { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            ATT = 1;
+            table.ItemsSource = DBQueries.GetProducts(ATT).Where(x => x.Count > 0);
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            product = ((Product)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item).Id;
+
         }
     }
 }
