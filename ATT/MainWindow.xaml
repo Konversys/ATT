@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Торговля" Height="450" Width="1200">
+        Title="Торговля" Height="800" Width="1200">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1194" Margin="0,0,-0.4,0">
             <MenuItem Header="Сменить АТТ"/>
-            <MenuItem Header="История продаж"/>
+            <MenuItem Header="Продажи">
+                <MenuItem Header="Чеки"/>
+            </MenuItem>
+            <MenuItem Header="Справочники"/>
+            <MenuItem Header="Накладные"/>
         </Menu>
         <DataGrid x:Name="table" HorizontalAlignment="Left" Height="350" Margin="10,60,0,0" VerticalAlignment="Top" Width="1174"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
             <DataGrid.Columns>
@@ -30,5 +34,21 @@
             <TextBlock Text="По типу медикамента"/>
             <TextBlock Text="По производителю"/>
         </ComboBox>
+
+        <DataGrid x:Name="table_Copy" HorizontalAlignment="Left" Height="240" Margin="10,471,0,0" VerticalAlignment="Top" Width="1174"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="250" />
+                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Form}" Width="170" />
+                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Type}" Width="170" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Creator}" Width="170" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Count}" Width="110" />
+                <DataGridTextColumn Header="Годен до" Binding="{Binding Date}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,437,0,0" TextWrapping="Wrap" Text="Формирование чека" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>
+        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="1054,725,0,0" VerticalAlignment="Top" Width="130" Height="30"/>
+
     </Grid>
 </Window>

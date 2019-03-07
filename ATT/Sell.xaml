@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Продажа товара" Height="170" Width="500">
+        Title="Продажа товара" Height="300" Width="650">
     <Grid>
-        <TextBlock x:Name="title" HorizontalAlignment="Left" Height="50" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="475"/>
-        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Margin="0,65,0,0" TextWrapping="Wrap" Text="Доступно: 530" VerticalAlignment="Top" Width="218" Height="25"/>
-        <TextBox x:Name="selling" HorizontalAlignment="Left" Margin="140,95,0,0" Text="1" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Top" Width="90" Height="25" VerticalContentAlignment="Center"/>
-        <Button Content="Продать" HorizontalAlignment="Right" Margin="0,95,140,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_Click"/>
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="190" Margin="10,10,0,0" VerticalAlignment="Top" Width="623"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Title}" Width="100" />
+                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=Form}" Width="100" />
+                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=Type}" Width="100" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=Creator}" Width="100" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="80" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}" Width="80" />
+                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=Date}" Width="80" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ИТОГО 3501 руб." Margin="10,213,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <Button Content="Продать" HorizontalAlignment="Right" Margin="0,217,10.2,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="История продаж" Height="450" Width="448.8">
+        Title="Чеки" Height="450" Width="450">
     <Grid>
-        <TextBox HorizontalAlignment="Right" Margin="0,10,170,0" Height="22" VerticalAlignment="Top" Width="200"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="150">
+        <TextBox HorizontalAlignment="Right" Margin="0,40,186.2,0" Height="22" VerticalAlignment="Top" Width="247"/>
+        <ComboBox HorizontalAlignment="Right" Margin="0,40,11.2,0" VerticalAlignment="Top" Width="150">
             <ComboBoxItem IsSelected="True">
                 <TextBlock Text="По кассиру"/>
             </ComboBoxItem>
             <TextBlock Text="По дате"/>
         </ComboBox>
-        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="370" Margin="10,40,0,0" VerticalAlignment="Top" Width="422">
+        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="343" Margin="10,67,0,0" VerticalAlignment="Top" Width="422">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" Width="70" />
                 <DataGridTextColumn Header="Кассир" Binding="{Binding Path=Person}" Width="150" />
@@ -22,5 +22,9 @@
                 <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Count}" Width="100" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Начало периода " VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="243,13,0,0" TextWrapping="Wrap" Text="Конец периода" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
