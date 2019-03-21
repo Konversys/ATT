@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Transaction" Height="450" Width="800">
+        Title="Движение товаров" Height="370" Width="900">
     <Grid>
-        
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="285" Margin="16,46,0,0" VerticalAlignment="Top" Width="861"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="120" />
+                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Form}" Width="100" />
+                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Type}" Width="100" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Creator}" Width="100" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="80" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="80" />
+                <DataGridTextColumn Header="Кассир" Binding="{Binding Count}" Width="100" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Count}" Width="80" />
+                <DataGridTextColumn Header="Дата продажи" Binding="{Binding Date}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Right" Margin="0,11,175.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
+        <ComboBox HorizontalAlignment="Right" Margin="0,11,16.6,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem IsSelected="True">
+                <TextBlock Text="По наименованию"/>
+            </ComboBoxItem>
+            <TextBlock Text="По форме выпуска"/>
+            <TextBlock Text="По типу медикамента"/>
+            <TextBlock Text="По производителю"/>
+        </ComboBox>
+
     </Grid>
 </Window>

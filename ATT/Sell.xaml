@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Продажа товара" Height="300" Width="650">
+        Title="Добавить медикамент в корзину" Height="180" Width="650">
     <Grid>
-        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="190" Margin="10,10,0,0" VerticalAlignment="Top" Width="623"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="61" Margin="10,10,0,0" VerticalAlignment="Top" Width="623"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Title}" Width="100" />
                 <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=Form}" Width="100" />
@@ -18,7 +18,9 @@
                 <DataGridTextColumn Header="Годен до" Binding="{Binding Path=Date}" Width="80" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ИТОГО 3501 руб." Margin="10,213,0,0" VerticalAlignment="Top" Width="Auto"/>
-        <Button Content="Продать" HorizontalAlignment="Right" Margin="0,217,10.2,0" VerticalAlignment="Top" Width="100" Height="25" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ВСЕГО 3501 руб." Margin="10,83,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <Button Content="Подтвердить" HorizontalAlignment="Right" Margin="0,118,10.2,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" FontSize="16" TextWrapping="Wrap" Text="Введите количество" Margin="356,83,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="513,86,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

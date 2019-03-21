@@ -19,7 +19,8 @@
         </DataGrid>
         <TextBlock HorizontalAlignment="Right" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ИТОГО 3501 руб." Margin="0,325,30,0" VerticalAlignment="Top" Width="Auto"/>
         <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Место расчета: г. Барнаул, Красноармейский пр-кт 65А" Margin="0,355,30,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Дата: 06.03.2019" Margin="0,375,30,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Кассир: Тычков Н. В" Margin="0,395,30,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Дата: 06.03.2019" Margin="0,393,28.6,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Кассир: Тычков Н. В" Margin="0,413,28.6,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="КЛАДР: 4604654416541655" Margin="0,375,29.6,0" VerticalAlignment="Top" Width="Auto"/>
     </Grid>
 </Window>

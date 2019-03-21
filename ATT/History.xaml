@@ -14,7 +14,7 @@
             </ComboBoxItem>
             <TextBlock Text="По дате"/>
         </ComboBox>
-        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="343" Margin="10,67,0,0" VerticalAlignment="Top" Width="422">
+        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="321" Margin="10,89,0,0" VerticalAlignment="Top" Width="422">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" Width="70" />
                 <DataGridTextColumn Header="Кассир" Binding="{Binding Path=Person}" Width="150" />
@@ -26,5 +26,6 @@
         <DatePicker HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="243,13,0,0" TextWrapping="Wrap" Text="Конец периода" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Сумма за период: 10640" VerticalAlignment="Top"/>
     </Grid>
 </Window>

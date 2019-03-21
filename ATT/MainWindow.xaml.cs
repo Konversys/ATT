@@ -36,5 +36,35 @@ namespace ATT
             product = ((Product)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item).Id;
 
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Authorization window = new Authorization();
+            window.Show();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            History window = new History();
+            window.Show();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Catalog window = new Catalog();
+            window.Show();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            Invoice window = new Invoice();
+            window.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Sell window = new Sell();
+            window.Show();
+        }
     }
 }
