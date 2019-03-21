@@ -15,7 +15,7 @@
             <ComboBoxItem Content="Типы медикаментов"/>
             <ComboBoxItem Content="Производители"/>
         </ComboBox>
-        <TextBlock Text="Поиск по справочнику" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="493,14,0,0"/>
+        <TextBlock Text="Поиск по справочнику" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="480,14,0,0"/>
         <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,12,169.6,0" Height="22" VerticalAlignment="Top" Width="200" TextChanged="_find_TextChanged"/>
         <ComboBox x:Name="_type" HorizontalAlignment="Right" Margin="0,12,9.6,0" VerticalAlignment="Top" Width="150"/>
         <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="363" Margin="10,47,0,0" VerticalAlignment="Top" Width="974" IsReadOnly="True">
