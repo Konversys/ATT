@@ -8,6 +8,16 @@ namespace ATT.Model.Models
 {
     public class Product
     {
+
+        _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 210 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Действующее в-во", Width = 110 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Форма продажи", Width = 130 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Форма выпуска", Width = 130 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Тип медикамента", Width = 130 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Производитель", Width = 110 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Рецептурное", Width = 80 });
+                    _table.Columns.Add(new DataGridTextColumn() { Header = "Штрихкод", Width = 100 });
+
         public int Id { get; set; }
         public string Title { get; set; }
         public string Form { get; set; }

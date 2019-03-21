@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Движение товаров" Height="370" Width="900">
     <Grid>
-        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="285" Margin="16,46,0,0" VerticalAlignment="Top" Width="861"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="285" Margin="16,46,0,0" VerticalAlignment="Top" Width="861"  AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="120" />
                 <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Form}" Width="100" />

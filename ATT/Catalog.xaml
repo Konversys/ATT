@@ -8,32 +8,23 @@
         Title="Справочники" Height="450" Width="1000">
     <Grid>
         <TextBlock Text="Выбор справочника" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,14,0,0"/>
-        <ComboBox HorizontalAlignment="Left" Margin="137,12,0,0" VerticalAlignment="Top" Width="200">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock Text="Склады"/>
-            </ComboBoxItem>
-            <TextBlock Text="Медикаменты"/>
-            <TextBlock Text="Формы выпуска"/>
-            <TextBlock Text="Типы медикаментов"/>
-            <TextBlock Text="Производители"/>
+        <ComboBox x:Name="_catalog" HorizontalAlignment="Left" Margin="137,12,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="Cat_SelectionChanged">
+            <ComboBoxItem Content="Медикаменты"/>
+            <ComboBoxItem Content="Действующие вещества"/>
+            <ComboBoxItem Content="Формы выпуска"/>
+            <ComboBoxItem Content="Типы медикаментов"/>
+            <ComboBoxItem Content="Производители"/>
         </ComboBox>
         <TextBlock Text="Поиск по справочнику" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="493,14,0,0"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,12,169.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,12,9.6,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock Text="По наименованию"/>
-            </ComboBoxItem>
-            <TextBlock Text="По форме выпуска"/>
-            <TextBlock Text="По типу медикамента"/>
-            <TextBlock Text="По производителю"/>
-        </ComboBox>
-        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="363" Margin="10,47,0,0" VerticalAlignment="Top" Width="974"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,12,169.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="_type" HorizontalAlignment="Right" Margin="0,12,9.6,0" VerticalAlignment="Top" Width="150"/>
+        <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="363" Margin="10,47,0,0" VerticalAlignment="Top" Width="974"  AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Title}" Width="260" />
-                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Form}" Width="200" />
-                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Type}" Width="200" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Creator}" Width="200" />
-                <DataGridTextColumn Header="Рецептурное" Binding="{Binding IsRecipe}" Width="100" />
+                <DataGridTextColumn Header="Наименование" Width="260" />
+                <DataGridTextColumn Header="Форма выпуска" Width="200" />
+                <DataGridTextColumn Header="Тип медикамента" Width="200" />
+                <DataGridTextColumn Header="Производитель" Width="200" />
+                <DataGridTextColumn Header="Рецептурное" Width="100" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
