@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ATT.Model.Database;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ATT
 {
@@ -34,47 +25,116 @@ namespace ATT
                     "По типу медикамента", "По производителю"};
                     _table.Columns.Clear();
                     _type.SelectedItem = _type.Items[0];
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 210 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Действующее в-во", Width = 110 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Форма продажи", Width = 130 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Форма выпуска", Width = 130 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Тип медикамента", Width = 130 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Производитель", Width = 110 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Рецептурное", Width = 80 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Штрихкод", Width = 100 });
+                    _table.ItemsSource = DBQueries.GetProductView();
                     break;
                 case "Действующие вещества":
                     _type.ItemsSource = new string[] { "По наименованию" };
                     _table.Columns.Clear();
                     _type.SelectedItem = _type.Items[0];
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 400 });
+                    _table.ItemsSource = DBQueries.GetActiveView();
                     break;
                 case "Типы медикаментов":
                     _type.ItemsSource = new string[] { "По наименованию", "По ОКП" };
                     _table.Columns.Clear();
                     _type.SelectedItem = _type.Items[0];
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 400 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "ОКП", Width = 260 });
+                    _table.ItemsSource = DBQueries.GetTypeView();
                     break;
                 case "Формы выпуска":
                     _type.ItemsSource = new string[] { "По наименованию", "По номеру" };
                     _table.Columns.Clear();
                     _type.SelectedItem = _type.Items[0];
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 400 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Порядковый номер", Width = 260 });
+                    _table.ItemsSource = DBQueries.GetFormView();
                     break;
                 case "Производители":
                     _type.ItemsSource = new string[] { "По наименованию", "По ОКПО" };
                     _table.Columns.Clear();
                     _type.SelectedItem = _type.Items[0];
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "Наименование", Width = 400 });
-                    _table.Columns.Add(new DataGridTextColumn() { Header = "ОКПО", Width = 260 });
+                    _table.ItemsSource = DBQueries.GetCreatorView();
                     break;
                 default:
                     _type.IsEnabled = false;
                     break;
             }
             _find.Text = "";
+        }
+
+        private void _find_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            switch (((ComboBoxItem)_catalog.SelectedItem).Content.ToString())
+            {
+                case "Медикаменты":
+                    switch (_type.SelectedItem)
+                    {
+                        case "По наименованию":
+                            _table.ItemsSource = DBQueries.GetProductView().Where(x => x.Наименование.Contains(_find.Text));
+                            break;
+                        case "По действующему веществу":
+                            _table.ItemsSource = DBQueries.GetProductView().Where(x => x.Действующее__вещество.Contains(_find.Text));
+                            break;
+                        case "По форме выпуска":
+                            _table.ItemsSource = DBQueries.GetProductView().Where(x => x.Форма__выпуска.Contains(_find.Text));
+                            break;
+                        case "По типу медикамента":
+                            _table.ItemsSource = DBQueries.GetProductView().Where(x => x.Тип__медикамента.Contains(_find.Text));
+                            break;
+                        case "По производителю":
+                            _table.ItemsSource = DBQueries.GetProductView().Where(x => x.Производитель.Contains(_find.Text));
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "Действующие вещества":
+                    switch (_type.SelectedItem)
+                    {
+                        case "По наименованию":
+                            _table.ItemsSource = DBQueries.GetActiveView().Where(x => x.Наименование.Contains(_find.Text));
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "Типы медикаментов":
+                    switch (_type.SelectedItem)
+                    {
+                        case "По наименованию":
+                            _table.ItemsSource = DBQueries.GetTypeView().Where(x => x.Наименование.Contains(_find.Text));
+                            break;
+                        case "По ОКП":
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "Формы выпуска":
+                    switch (_type.SelectedItem)
+                    {
+                        case "По наименованию":
+                            _table.ItemsSource = DBQueries.GetFormView().Where(x => x.Наименование.Contains(_find.Text));
+                            break;
+                        case "По номеру":
+                            _table.ItemsSource = DBQueries.GetFormView().Where(x => x.Номер.Contains(_find.Text));
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "Производители":
+                    switch (_type.SelectedItem)
+                    {
+                        case "По наименованию":
+                            _table.ItemsSource = DBQueries.GetFormView().Where(x => x.Наименование.Contains(_find.Text));
+                            break;
+                        case "По ОКПО":
+                            _table.ItemsSource = DBQueries.GetCreatorView().Where(x => x.ОКПО.Contains(_find.Text));
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

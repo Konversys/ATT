@@ -16,15 +16,18 @@
             <ComboBoxItem Content="Производители"/>
         </ComboBox>
         <TextBlock Text="Поиск по справочнику" Height="Auto" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="493,14,0,0"/>
-        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,12,169.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,12,169.6,0" Height="22" VerticalAlignment="Top" Width="200" TextChanged="_find_TextChanged"/>
         <ComboBox x:Name="_type" HorizontalAlignment="Right" Margin="0,12,9.6,0" VerticalAlignment="Top" Width="150"/>
-        <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="363" Margin="10,47,0,0" VerticalAlignment="Top" Width="974"  AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="363" Margin="10,47,0,0" VerticalAlignment="Top" Width="974" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Width="260" />
-                <DataGridTextColumn Header="Форма выпуска" Width="200" />
-                <DataGridTextColumn Header="Тип медикамента" Width="200" />
-                <DataGridTextColumn Header="Производитель" Width="200" />
-                <DataGridTextColumn Header="Рецептурное" Width="100" />
+                <DataGridTextColumn Header="Наименование" Width="210" />
+                <DataGridTextColumn Header="Действующее в-во" Width="110" />
+                <DataGridTextColumn Header="Форма продажи" Width="130" />
+                <DataGridTextColumn Header="Форма выпуска" Width="130" />
+                <DataGridTextColumn Header="Тип медикамента" Width="130" />
+                <DataGridTextColumn Header="Производитель" Width="110" />
+                <DataGridTextColumn Header="Рецептурное" Width="80" />
+                <DataGridTextColumn Header="Штрихкод" Width="100" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

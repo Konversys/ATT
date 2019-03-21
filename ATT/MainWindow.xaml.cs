@@ -28,13 +28,12 @@ namespace ATT
         {
             InitializeComponent();
             ATT = 1;
-            table.ItemsSource = DBQueries.GetProducts(ATT).Where(x => x.Count > 0);
+            //table.ItemsSource = DBQueries.GetProducts(ATT).Where(x => x.Count > 0);
         }
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            product = ((Product)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item).Id;
-
+            //product = ((Product)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item).Id;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
