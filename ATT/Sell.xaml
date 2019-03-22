@@ -9,18 +9,18 @@
     <Grid>
         <DataGrid x:Name="table" HorizontalAlignment="Left" Height="61" Margin="10,10,0,0" VerticalAlignment="Top" Width="623"  AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Title}" Width="100" />
-                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=Form}" Width="100" />
-                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=Type}" Width="100" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=Creator}" Width="100" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="80" />
-                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}" Width="80" />
-                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=Date}" Width="80" />
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=title}" Width="150" />
+                <DataGridTextColumn Header="Действующее в-во" Binding="{Binding Path=active}" Width="120" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}" Width="70" />
+                <DataGridTextColumn Header="Рецепт" Binding="{Binding Path=recipe}" Width="70" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Path=count}" Width="80" />
+                <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=date}" Width="90" />
+                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=valid}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ВСЕГО 3501 руб." Margin="10,83,0,0" VerticalAlignment="Top" Width="Auto"/>
-        <Button Content="Подтвердить" HorizontalAlignment="Right" Margin="0,118,10.2,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Click"/>
+        <TextBlock x:Name="total" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="10,83,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <Button Content="Подтвердить" HorizontalAlignment="Right" Margin="0,115,9,0" VerticalAlignment="Top" Width="120" Height="25" Click="Button_Click"/>
         <TextBlock HorizontalAlignment="Left" FontWeight="DemiBold" FontSize="16" TextWrapping="Wrap" Text="Введите количество" Margin="356,83,0,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="513,86,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="count" HorizontalAlignment="Left" Height="23" Margin="513,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Count_TextChanged"/>
     </Grid>
 </Window>

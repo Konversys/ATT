@@ -93,11 +93,12 @@
     <Compile Include="Invoice.xaml.cs">
       <DependentUpon>Invoice.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Models\Active.cs" />
-    <Compile Include="Model\Models\Creator.cs" />
-    <Compile Include="Model\Models\Deliver.cs" />
-    <Compile Include="Model\Models\Form.cs" />
-    <Compile Include="Model\Models\Type.cs" />
+    <Compile Include="Model\Models\Catalog\Active.cs" />
+    <Compile Include="Model\Models\Catalog\Creator.cs" />
+    <Compile Include="Model\Models\Catalog\Deliver.cs" />
+    <Compile Include="Model\Models\Catalog\Form.cs" />
+    <Compile Include="Model\Models\ProductATT.cs" />
+    <Compile Include="Model\Models\Catalog\Type.cs" />
     <Compile Include="Sell.xaml.cs">
       <DependentUpon>Sell.xaml</DependentUpon>
     </Compile>
@@ -151,7 +152,7 @@
   <ItemGroup>
     <Compile Include="Model\Database\DBHelper.cs" />
     <Compile Include="Model\Database\DBQueries.cs" />
-    <Compile Include="Model\Models\Product.cs" />
+    <Compile Include="Model\Models\Catalog\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -4,56 +4,64 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Торговля" Height="800" Width="1200">
+        Title="Торговля" Height="800" Width="1305" Activated="Window_Activated">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1194" Margin="0,0,-0.4,0">
-            <MenuItem Header="Сменить АТТ" Click="MenuItem_Click"/>
+            <MenuItem Header="Сменить АТТ"/>
             <MenuItem Header="Продажи">
-                <MenuItem Header="Движение товара" Click="MenuItem_Click_1"/>
-                <MenuItem Header="Чеки" Click="MenuItem_Click_1"/>
+                <MenuItem Header="Движение товара"/>
+                <MenuItem Header="Чеки"/>
             </MenuItem>
-            <MenuItem Header="Справочники" Click="MenuItem_Click_2"/>
-            <MenuItem Header="Накладные" Click="MenuItem_Click_3" />
+            <MenuItem Header="Справочники" Click="Catalog_Click"/>
+            <MenuItem Header="Накладные"/>
         </Menu>
-        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="350" Margin="10,60,0,0" VerticalAlignment="Top" Width="1174"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="350" Margin="10,60,0,0" VerticalAlignment="Top" Width="1274"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Title}" Width="240" />
-                <DataGridTextColumn Header="Действующее вещество" Binding="{Binding Path=Active}" Width="160" />
-                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=Form}" Width="160" />
-                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=Type}" Width="140" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=Creator}" Width="140" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="70" />
-                <DataGridTextColumn Header="Остаток" Binding="{Binding Path=Count}" Width="80" />
-                <DataGridTextColumn Header="В товаре" Binding="{Binding Path=SubCount}" Width="100" />
-                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=Date}" Width="100" />
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=title}" Width="170" />
+                <DataGridTextColumn Header="Действующее в-во" Binding="{Binding Path=active}" Width="120" />
+                <DataGridTextColumn Header="Упаковка" Binding="{Binding Path=box}" Width="80" />
+                <DataGridTextColumn Header="В упаковке" Binding="{Binding Path=inside}" Width="80" />
+                <DataGridTextColumn Header="Ед. измерения" Binding="{Binding Path=measures}" Width="80" />
+                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=form}" Width="120" />
+                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=type}" Width="120" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=creator}" Width="120" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}" Width="60" />
+                <DataGridTextColumn Header="Рецепт" Binding="{Binding Path=recipe}" Width="60" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Path=count}" Width="70" />
+                <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=date}" Width="90" />
+                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=valid}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Right" Margin="0,25,170,0" Height="22" VerticalAlignment="Top" Width="200"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,25,10,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock Text="По наименованию"/>
-            </ComboBoxItem>
-            <TextBlock Text="По действующему веществу"/>
-            <TextBlock Text="По форме выпуска"/>
-            <TextBlock Text="По типу медикамента"/>
-            <TextBlock Text="По производителю"/>
+        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,25,170,0" Height="22" VerticalAlignment="Top" Width="200" TextChanged="_find_TextChanged"/>
+        <ComboBox x:Name="_type"  HorizontalAlignment="Right" Margin="0,25,10,0" VerticalAlignment="Top" Width="150" SelectionChanged="Type_SelectionChanged">
+            <ComboBoxItem Content="По наименованию"/>
+            <ComboBoxItem Content="По действующему веществу"/>
+            <ComboBoxItem Content="По форме выпуска"/>
+            <ComboBoxItem Content="По типу медикамента"/>
+            <ComboBoxItem Content="По производителю"/>
         </ComboBox>
 
-        <DataGrid x:Name="table_Copy" HorizontalAlignment="Left" Height="240" Margin="10,471,0,0" VerticalAlignment="Top" Width="1174"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
+        <DataGrid x:Name="table_sell" HorizontalAlignment="Left" Height="240" Margin="10,471,0,0" VerticalAlignment="Top" Width="1275"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Title}" Width="240" />
-                <DataGridTextColumn Header="Действующее вещество" Binding="{Binding Path=Active}" Width="160" />
-                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=Form}" Width="160" />
-                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=Type}" Width="140" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=Creator}" Width="140" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="70" />
-                <DataGridTextColumn Header="Остаток" Binding="{Binding Path=Count}" Width="80" />
-                <DataGridTextColumn Header="В товаре" Binding="{Binding Path=SubCount}" Width="100" />
-                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=Date}" Width="100" />
+                <DataGridTextColumn Header="К покупке" Binding="{Binding Path=sell}" Width="70"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=title}" Width="150" />
+                <DataGridTextColumn Header="Действующее в-во" Binding="{Binding Path=active}" Width="120" />
+                <DataGridTextColumn Header="Упаковка" Binding="{Binding Path=box}" Width="70" />
+                <DataGridTextColumn Header="В упаковке" Binding="{Binding Path=inside}" Width="70" />
+                <DataGridTextColumn Header="Ед. измерения" Binding="{Binding Path=measures}" Width="100" />
+                <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=form}" Width="110" />
+                <DataGridTextColumn Header="Тип медикамента" Binding="{Binding Path=type}" Width="110" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=creator}" Width="110" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}" Width="60" />
+                <DataGridTextColumn Header="Рецепт" Binding="{Binding Path=recipe}" Width="60" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding Path=count}" Width="70" />
+                <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=date}" Width="90" />
+                <DataGridTextColumn Header="Годен до" Binding="{Binding Path=valid}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock x:Name="total" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="11,728,0,0" VerticalAlignment="Top" Width="Auto"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,437,0,0" TextWrapping="Wrap" Text="Формирование чека" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>
-        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="1054,725,0,0" VerticalAlignment="Top" Width="130" Height="30" Click="Button_Click" />
-        <TextBlock x:Name="title_date" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="Остатки на 12.03.2019" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>
+        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="1149,725,0,0" VerticalAlignment="Top" Width="130" Height="30" Click="Button_Click"/>
+        <TextBlock x:Name="title_date" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>
     </Grid>
 </Window>

@@ -22,48 +22,80 @@ namespace ATT
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int product { get; private set; }
-        public static int ATT { get; set; }
+        public static List<ProductATT> sellList;
+        public static ProductATT product { get; private set; }
+        public static int att { get; set; }
         public MainWindow()
         {
+            sellList = new List<ProductATT>();
             InitializeComponent();
-            ATT = 1;
-            //table.ItemsSource = DBQueries.GetProducts(ATT).Where(x => x.Count > 0);
+            att = 2;
+            title_date.Text = "Остатки на " + System.DateTime.Now.ToLongDateString();
+            table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
         }
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //product = ((Product)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item).Id;
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Authorization window = new Authorization();
+            product = ((ProductATT)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item);
+            Sell window = new Sell();
             window.Show();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-            History window = new History();
-            window.Show();
-        }
-
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        private void Catalog_Click(object sender, RoutedEventArgs e)
         {
             Catalog window = new Catalog();
             window.Show();
         }
 
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        private void Window_Activated(object sender, EventArgs e)
         {
-            Invoice window = new Invoice();
-            window.Show();
+            table_sell.ItemsSource = new List<ProductATT>();
+            table_sell.ItemsSource = sellList;
+            double total_count = 0;
+            foreach (var item in sellList)
+            {
+                total_count += item.price * item.sell;
+            }
+            total.Text = $"К оплате: {total_count}";
+        }
+
+        private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void _find_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
+        }
+
+        void Update()
+        {
+            switch (((ComboBoxItem)_type.SelectedItem).Content.ToString())
+            {
+                case "По наименованию":
+                    table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0).Where(x => x.title.Contains(_find.Text));
+                    break;
+                case "По действующему веществу":
+                    table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0).Where(x => x.active.Contains(_find.Text));
+                    break;
+                case "По форме выпуска":
+                    table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0).Where(x => x.form.Contains(_find.Text));
+                    break;
+                case "По типу медикамента":
+                    table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0).Where(x => x.type.Contains(_find.Text));
+                    break;
+                case "По производителю":
+                    table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0).Where(x => x.creator.Contains(_find.Text));
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Sell window = new Sell();
-            window.Show();
+
         }
     }
 }

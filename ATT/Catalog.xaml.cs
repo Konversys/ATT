@@ -60,6 +60,16 @@ namespace ATT
 
         private void _find_TextChanged(object sender, TextChangedEventArgs e)
         {
+            UpdateTable();
+        }
+
+        private void _type_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateTable();
+        }
+
+        void UpdateTable()
+        {
             switch (((ComboBoxItem)_catalog.SelectedItem).Content.ToString())
             {
                 case "Медикаменты":
