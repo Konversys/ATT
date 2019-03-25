@@ -267,7 +267,7 @@ namespace ATT.Model.Database
                     return false;
                 }
                 reader.Close();
-                string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell*item.price})";
+                string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell * item.price})";
                 command.CommandText = query_insertSale;
                 if (command.ExecuteNonQuery() == 0)
                 {
@@ -277,6 +277,63 @@ namespace ATT.Model.Database
             }
             DBHelper.GetConnect().Close();
             return true;
+        }
+        #endregion
+
+        #region History
+        public static List<ChequeView> GetCheques(int att)
+        {
+            List<ChequeView> items = new List<ChequeView>();
+            string query = $"SELECT cheque.id, person.fio, cheque.date, SUM(sale.price) as sum from sale, cheque, person WHERE sale.cheque = cheque.id AND person.id = cheque.person AND cheque.att = {att} GROUP BY cheque.id";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(new ChequeView()
+                {
+                    id = reader.GetInt32(0),
+                    person = reader.GetString(1),
+                    date = reader.GetDateTime(2),
+                    sum = reader.GetDouble(3),
+                });
+            }
+            DBHelper.GetConnect().Close();
+            return items;
+        }
+        #endregion
+
+        #region Cheque
+        public static List<Sale> GetSales(int cheque)
+        {
+            List<Sale> items = new List<Sale>();
+            string query = "SELECT sale.id, product.title, box.title as box, product.count as inside, " +
+                "measures.title as measures,sale.count, att_list.price, sale.price as total " +
+                "FROM sale, product, att_list, box, measures " +
+                "WHERE sale.product = att_list.id AND att_list.product = product.id " +
+                "AND product.measures = measures.id AND product.box = box.id " +
+                $"AND sale.cheque = {cheque}";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(new Sale()
+                {
+                    id = reader.GetInt32(0),
+                    title = reader.GetString(1),
+                    box = reader.GetString(2),
+                    inside = reader.GetString(3),
+                    measures = reader.GetString(4),
+                    count = reader.GetInt32(5),
+                    price = reader.GetDouble(6),
+                    total = reader.GetDouble(7),
+                });
+            }
+            DBHelper.GetConnect().Close();
+            return items;
         }
         #endregion
     }

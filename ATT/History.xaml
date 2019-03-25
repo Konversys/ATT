@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="Чеки" Height="440" Width="450">
     <Grid>
-        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,40,186.2,0" Height="22" VerticalAlignment="Top" Width="247"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,40,11.2,0" VerticalAlignment="Top" Width="150">
+        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,45,180,0" Height="22" VerticalAlignment="Top" Width="247" TextChanged="Find_TextChanged"/>
+        <ComboBox x:Name="type" HorizontalAlignment="Right" Margin="0,45,5,0" VerticalAlignment="Top" Width="150">
             <ComboBoxItem Content="По кассиру" IsSelected="True"/>
         </ComboBox>
-        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="321" Margin="9,76,0,0" VerticalAlignment="Top" Width="422">
+        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="321" Margin="9,76,0,0" VerticalAlignment="Top" Width="422" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="History_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" Width="70" />
-                <DataGridTextColumn Header="Кассир" Binding="{Binding Path=Person}" Width="150" />
-                <DataGridTextColumn Header="Дата" Binding="{Binding Path=Date}" Width="100" />
-                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Count}" Width="100" />
+                <DataGridTextColumn Header="Номер" Binding="{Binding Path=id}" Width="50" />
+                <DataGridTextColumn Header="Кассир" Binding="{Binding Path=person}" Width="150" />
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=date}" Width="130" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=sum}" Width="80" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Начало периода " VerticalAlignment="Top"/>
-        <DatePicker x:Name="date_start" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date_start" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top" SelectedDateChanged="Date_start_SelectedDateChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="243,13,0,0" TextWrapping="Wrap" Text="Конец периода" VerticalAlignment="Top"/>
-        <DatePicker x:Name="date_end" HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date_end" HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top" SelectedDateChanged="Date_end_SelectedDateChanged"/>
     </Grid>
 </Window>

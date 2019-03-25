@@ -97,8 +97,10 @@
     <Compile Include="Model\Models\Catalog\Creator.cs" />
     <Compile Include="Model\Models\Catalog\Deliver.cs" />
     <Compile Include="Model\Models\Catalog\Form.cs" />
+    <Compile Include="Model\Models\ChequeView.cs" />
     <Compile Include="Model\Models\ProductATT.cs" />
     <Compile Include="Model\Models\Catalog\Type.cs" />
+    <Compile Include="Model\Models\Sale.cs" />
     <Compile Include="Sell.xaml.cs">
       <DependentUpon>Sell.xaml</DependentUpon>
     </Compile>

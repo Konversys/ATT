@@ -115,7 +115,8 @@ namespace ATT
 
         private void History_Click(object sender, RoutedEventArgs e)
         {
-            
+            History window = new History();
+            window.Show();
         }
     }
 }

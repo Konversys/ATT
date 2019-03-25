@@ -5,22 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Чек" Height="470" Width="500">
+        Title="Чек" Height="450" Width="600">
     <Grid>
-        <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Чек №1024" Margin="0,15,0,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" Text='АО "Аптека экономных людей"' Margin="0,35,0,0" VerticalAlignment="Top" Width="Auto"/>
-        <DataGrid HorizontalAlignment="Left" Height="252" Margin="10,65,0,0" VerticalAlignment="Top" Width="474">
+        <TextBlock x:Name="number" HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,15,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text='АО "Аптека экономных людей"' Margin="0,35,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="252" Margin="10,65,0,0" VerticalAlignment="Top" Width="574" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Медикамент" Binding="{Binding Path=Title}" Width="230" />
-                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Form}" Width="80" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Type}" Width="80" />
-                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=Creator}" Width="80" />
+                <DataGridTextColumn Header="Медикамент" Binding="{Binding Path=title}" Width="160" />
+                <DataGridTextColumn Header="Упаковка" Binding="{Binding Path=box}" Width="70" />
+                <DataGridTextColumn Header="В упаковке" Binding="{Binding Path=inside}" Width="70" />
+                <DataGridTextColumn Header="Ед. измерения" Binding="{Binding Path=measures}" Width="80" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=count}" Width="75" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}" Width="50" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Path=total}" Width="60" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock HorizontalAlignment="Right" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Text="ИТОГО 3501 руб." Margin="0,325,30,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Место расчета: г. Барнаул, Красноармейский пр-кт 65А" Margin="0,355,30,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Дата: 06.03.2019" Margin="0,393,28.6,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="Кассир: Тычков Н. В" Margin="0,413,28.6,0" VerticalAlignment="Top" Width="Auto"/>
-        <TextBlock HorizontalAlignment="Right"  TextWrapping="Wrap" Text="КЛАДР: 4604654416541655" Margin="0,375,29.6,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock x:Name="total" HorizontalAlignment="Right" FontWeight="Bold" FontSize="16" TextWrapping="Wrap"  Margin="0,325,30,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock x:Name="date"  HorizontalAlignment="Right"  TextWrapping="Wrap" Margin="0,360,25,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock x:Name="person" HorizontalAlignment="Right"  TextWrapping="Wrap" Margin="0,380,25,0" VerticalAlignment="Top" Width="Auto"/>
     </Grid>
 </Window>
