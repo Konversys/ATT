@@ -5,16 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Чеки" Height="450" Width="450">
+        Title="Чеки" Height="440" Width="450">
     <Grid>
-        <TextBox HorizontalAlignment="Right" Margin="0,40,186.2,0" Height="22" VerticalAlignment="Top" Width="247"/>
+        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,40,186.2,0" Height="22" VerticalAlignment="Top" Width="247"/>
         <ComboBox HorizontalAlignment="Right" Margin="0,40,11.2,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock Text="По кассиру"/>
-            </ComboBoxItem>
-            <TextBlock Text="По дате"/>
+            <ComboBoxItem Content="По кассиру" IsSelected="True"/>
         </ComboBox>
-        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="321" Margin="10,89,0,0" VerticalAlignment="Top" Width="422">
+        <DataGrid x:Name="history" HorizontalAlignment="Left" Height="321" Margin="9,76,0,0" VerticalAlignment="Top" Width="422">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Path=Id}" Width="70" />
                 <DataGridTextColumn Header="Кассир" Binding="{Binding Path=Person}" Width="150" />
@@ -23,9 +20,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Начало периода " VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date_start" HorizontalAlignment="Left" Margin="109,10,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="243,13,0,0" TextWrapping="Wrap" Text="Конец периода" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Сумма за период: 10640" VerticalAlignment="Top"/>
+        <DatePicker x:Name="date_end" HorizontalAlignment="Left" Margin="333,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -10,7 +10,7 @@
             <MenuItem Header="Сменить АТТ"/>
             <MenuItem Header="Продажи">
                 <MenuItem Header="Движение товара"/>
-                <MenuItem Header="Чеки"/>
+                <MenuItem Header="Чеки" Click="History_Click" />
             </MenuItem>
             <MenuItem Header="Справочники" Click="Catalog_Click"/>
             <MenuItem Header="Накладные"/>

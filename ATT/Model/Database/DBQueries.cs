@@ -238,20 +238,45 @@ namespace ATT.Model.Database
             return products;
         }
 
-        public static void AddCheque(int att, int person, List<ProductATT> products)
+        public static bool AddCheque(int att, int person, List<ProductATT> products)
         {
-            string query_insertCheque = $"INSERT INTO cheque (person, date, att) VALUES({person}, \"{DateTime.Now.Date.ToShortDateString()}\", {att})";
-            string query_lastId = "SELECT LAST_INSERT_ID()";
-            foreach (var item in products)
-            {
-
-            }
-            string query_updateCount = $"UPDATE att_list SET att_list.count = {count} WHERE att_list.att = {att} AND att_list.id = {product_id}";
+            int cheque_id = -1;
+            string query_insertCheque = $"INSERT INTO cheque (person, date, att) VALUES({person}, NOW(), {att})";
+            string query_lastId = "SELECT MAX(id) from cheque";
             DBHelper.GetConnect().Open();
             MySqlCommand command = DBHelper.GetConnect().CreateCommand();
-            command.CommandText = query;
-            command.ExecuteNonQuery();
+            command.CommandText = query_insertCheque;
+            if (command.ExecuteNonQuery() == 0)
+            {
+                return false;
+            }
+            command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query_lastId;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                cheque_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            foreach (var item in products)
+            {
+                string query_updateCount = $"UPDATE att_list SET att_list.count = {item.count - item.sell} WHERE att_list.att = {att} AND att_list.id = {item.id}";
+                command.CommandText = query_updateCount;
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    return false;
+                }
+                reader.Close();
+                string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell*item.price})";
+                command.CommandText = query_insertSale;
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    return false;
+                }
+                reader.Close();
+            }
             DBHelper.GetConnect().Close();
+            return true;
         }
         #endregion
     }

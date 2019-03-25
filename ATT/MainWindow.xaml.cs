@@ -25,11 +25,13 @@ namespace ATT
         public static List<ProductATT> sellList;
         public static ProductATT product { get; private set; }
         public static int att { get; set; }
+        public static int person { get; set; }
         public MainWindow()
         {
             sellList = new List<ProductATT>();
             InitializeComponent();
             att = 2;
+            person = 4;
             title_date.Text = "Остатки на " + System.DateTime.Now.ToLongDateString();
             table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
         }
@@ -49,14 +51,7 @@ namespace ATT
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            table_sell.ItemsSource = new List<ProductATT>();
-            table_sell.ItemsSource = sellList;
-            double total_count = 0;
-            foreach (var item in sellList)
-            {
-                total_count += item.price * item.sell;
-            }
-            total.Text = $"К оплате: {total_count}";
+            UpdateWa();
         }
 
         private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,7 +63,17 @@ namespace ATT
         {
             Update();
         }
-
+        void UpdateWa()
+        {
+            table_sell.ItemsSource = new List<ProductATT>();
+            table_sell.ItemsSource = sellList;
+            double total_count = 0;
+            foreach (var item in sellList)
+            {
+                total_count += item.price * item.sell;
+            }
+            total.Text = $"К оплате: {total_count}";
+        }
         void Update()
         {
             switch (((ComboBoxItem)_type.SelectedItem).Content.ToString())
@@ -95,7 +100,22 @@ namespace ATT
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (DBQueries.AddCheque(att, person, sellList))
+            {
+                MessageBox.Show("Чек успешно сформирован", "Формирование чека");
+            }
+            else
+            {
+                MessageBox.Show("Ошибка при формировании чека", "Формирование чека");
+            }
+            sellList.Clear();
+            UpdateWa();
+            table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
+        }
 
+        private void History_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
