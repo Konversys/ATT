@@ -39,7 +39,11 @@ namespace ATT
             }
             else
             {
-                if (MainWindow.sellList.Where(x => x.id == product.id).Count() == 0)
+                if (int.Parse(count.Text) == 0)
+                {
+                    MainWindow.sellList.RemoveAll(x => x.id == product.id);
+                }
+                else if (MainWindow.sellList.Where(x => x.id == product.id).Count() == 0)
                 {
                     product.sell = int.Parse(count.Text);
                     MainWindow.sellList.Add(product);

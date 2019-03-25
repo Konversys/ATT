@@ -1,11 +1,9 @@
 ﻿using ATT.Model.Models;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Type = ATT.Model.Models.Type;
 
 namespace ATT.Model.Database
