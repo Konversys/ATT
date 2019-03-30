@@ -22,6 +22,7 @@ namespace ATT.Model.Models
         public double price { get; set; }
         public string date { get; set; }
         public string valid { get; set; }
+        public string arrival { get; set; }
         public int sell { get; set; }
     }
 }

@@ -157,7 +157,7 @@ namespace ATT.Model.Database
             string query = "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
                 "product.count as inside, measures.title as measures, creator.title as creator, " +
                 "form.title as form, type.title as type, product.recipe as recipe, att_list.count as count, " +
-                "att_list.price as price, att_list.date as date, att_list.valid as valid " +
+                "att_list.price as price, att_list.date as date, att_list.valid as valid, att_list.arrival as arrival " +
                 "FROM att_list, product, box, creator, form, type, active, measures " +
                 "WHERE att_list.product = product.id AND product.active = active.id " +
                 "AND product.box = box.id AND product.creator = creator.id " +
@@ -183,6 +183,7 @@ namespace ATT.Model.Database
                 product.price = reader.GetDouble(11);
                 product.date = reader.GetString(12).Split(' ')[0];
                 product.valid = reader.GetString(13).Split(' ')[0];
+                product.arrival = reader.GetString(14).Split(' ')[0];
                 if (reader.GetBoolean(9))
                     product.recipe = "Да";
                 else
@@ -198,7 +199,7 @@ namespace ATT.Model.Database
             string query = "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
                 "product.count as inside, measures.title as measures, creator.title as creator, " +
                 "form.title as form, type.title as type, product.recipe as recipe, att_list.count as count, " +
-                "att_list.price as price, att_list.date as date, att_list.valid as valid " +
+                "att_list.price as price, att_list.date as date, att_list.valid as valid, att_list.arrival as arrival " +
                 "FROM att_list, product, box, creator, form, type, active, measures " +
                 "WHERE att_list.product = product.id AND product.active = active.id " +
                 "AND product.box = box.id AND product.creator = creator.id " +
@@ -225,6 +226,7 @@ namespace ATT.Model.Database
                     price = reader.GetDouble(11),
                     date = reader.GetString(12).Split(' ')[0],
                     valid = reader.GetString(13).Split(' ')[0],
+                    arrival = reader.GetString(14).Split(' ')[0],
                 };
                 if (reader.GetBoolean(9))
                     product.recipe = "Да";

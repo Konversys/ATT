@@ -30,6 +30,7 @@
                 <DataGridTextColumn Header="Остаток" Binding="{Binding Path=count}" Width="70" />
                 <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=date}" Width="90" />
                 <DataGridTextColumn Header="Годен до" Binding="{Binding Path=valid}" Width="90" />
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=arrival}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,25,170,0" Height="22" VerticalAlignment="Top" Width="200" TextChanged="_find_TextChanged"/>
@@ -57,6 +58,7 @@
                 <DataGridTextColumn Header="Остаток" Binding="{Binding Path=count}" Width="70" />
                 <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=date}" Width="90" />
                 <DataGridTextColumn Header="Годен до" Binding="{Binding Path=valid}" Width="90" />
+                <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=arrival}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="total" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="11,728,0,0" VerticalAlignment="Top" Width="Auto"/>

@@ -24,7 +24,7 @@ namespace ATT
             InitializeComponent();
             att = 2;
             person = 4;
-            title_date.Text = "Остатки на " + System.DateTime.Now.ToLongDateString();
+            title_date.Text = "Остатки на " + DateTime.Now.ToLongDateString();
             table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
         }
 
