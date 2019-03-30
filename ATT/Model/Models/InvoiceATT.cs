@@ -9,10 +9,10 @@ namespace ATT.Model.Models
     class InvoiceATT
     {
         public int id { get; set; }
-        public string product { get; set; }
-        public string stock { get; set; }
+        public string kladr { get; set; }
+        public string person { get; set; }
         public string date { get; set; }
-        public bool taken { get; set; }
+        public string taken { get; set; }
 
     }
 }

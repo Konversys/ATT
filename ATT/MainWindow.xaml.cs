@@ -110,5 +110,11 @@ namespace ATT
             History window = new History();
             window.Show();
         }
+
+        private void Invoice_Click(object sender, RoutedEventArgs e)
+        {
+            Invoice window = new Invoice();
+            window.Show();
+        }
     }
 }

@@ -7,34 +7,33 @@
         mc:Ignorable="d"
         Title="Накладные" Height="400" Width="1150">
     <Grid>
-        <DataGrid x:Name="invoices" HorizontalAlignment="Left" Height="312" Margin="12,46,0,0" VerticalAlignment="Top" Width="260">
+        <DataGrid x:Name="invoices" HorizontalAlignment="Left" Height="312" Margin="12,46,0,0" VerticalAlignment="Top" Width="351" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Invoices_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Path=title}" Width="80" />
-                <DataGridTextColumn Header="Склад" Binding="{Binding Path=stock}" Width="100" />
+                <DataGridTextColumn Header="КЛАДР" Binding="{Binding Path=kladr}" Width="85" />
+                <DataGridTextColumn Header="Директор" Binding="{Binding Path=person}" Width="100" />
                 <DataGridTextColumn Header="Дата" Binding="{Binding Path=date}" Width="80" />
+                <DataGridTextColumn Header="Обработан" Binding="{Binding Path=taken}" Width="75" />
             </DataGrid.Columns>
         </DataGrid>
-        <Frame HorizontalAlignment="Left" Height="378" Margin="290,0,0,0" BorderThickness="1" BorderBrush="Aqua" VerticalAlignment="Top" Width="840"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,13,979,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem IsSelected="True" Content="Все"/>
+        <Frame HorizontalAlignment="Left" Height="378" Margin="368,0,0,-9" BorderThickness="1" BorderBrush="Aqua" VerticalAlignment="Top" Width="762"/>
+        <ComboBox x:Name="_type" HorizontalAlignment="Right" Margin="0,13,972,0" VerticalAlignment="Top" Width="150" SelectionChanged="Type_SelectionChanged">
+            <ComboBoxItem Content="Все"/>
             <ComboBoxItem Content="Ожидающие"/>
             <ComboBoxItem Content="Обработанные"/>
         </ComboBox>
-        <TextBlock Text="Стандартная надбавка: 13%" HorizontalAlignment="Left" Margin="311,333,0,0"/>
-        <DataGrid x:Name="table" HorizontalAlignment="Left" Height="270" Margin="309,46,0,0" VerticalAlignment="Top" Width="820">
+        <TextBlock Text="Стандартная надбавка: 13%" HorizontalAlignment="Left" Margin="376,322,0,11"/>
+        <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="270" Margin="376,46,0,0" VerticalAlignment="Top" Width="753" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Медикамент" Binding="{Binding Path=title}" Width="180" />
-                <DataGridTextColumn Header="Действующее вещество" Binding="{Binding Path=title}" Width="150" />
-                <DataGridTextColumn Header="Количество" Binding="{Binding Path=title}" Width="80" />
-                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=title}" Width="100" />
-                <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=title}" Width="80" />
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path=title}" Width="80" />
-                <DataGridTextColumn Header="Надбавка, %" Binding="{Binding Path=title}" Width="80" />
-                <DataGridTextColumn Header="Поступил" Binding="{Binding Path=date}" Width="80" />
-                <DataGridTextColumn Header="Изготовлен" Binding="{Binding Path=arrival}" Width="80" />
+                <DataGridTextColumn Header="Медикамент" Binding="{Binding Path=product}" Width="150" />
+                <DataGridTextColumn Header="Действующее вещество" Binding="{Binding Path=active}" Width="140" />
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=count}" Width="80" />
+                <DataGridTextColumn Header="Производитель" Binding="{Binding Path=creator}" Width="90" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path=subprice}" Width="70" />
+                <DataGridTextColumn Header="Цена с надбавкой" Binding="{Binding Path=price}" Width="110" />
+                <DataGridTextColumn Header="Дата производства" Binding="{Binding Path=date}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="1033,329,0,0" VerticalAlignment="Top" Width="95" Height="28"/>
+        <Button x:Name="submit" Content="Подтвердить" HorizontalAlignment="Left" Margin="1033,329,0,0" VerticalAlignment="Top" Width="95" Height="28" Click="Submit_Click"/>
         <TextBox HorizontalAlignment="Right" Margin="0,13,173.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
         <ComboBox HorizontalAlignment="Right" Margin="0,13,13.6,0" VerticalAlignment="Top" Width="150">
             <ComboBoxItem IsSelected="True">

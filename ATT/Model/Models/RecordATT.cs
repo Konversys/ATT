@@ -13,6 +13,7 @@ namespace ATT.Model.Models
         public string active { get; set; }
         public int count { get; set; }
         public string creator { get; set; }
+        public double subprice { get; set; }
         public double price { get; set; }
         public string date { get; set; }
     }

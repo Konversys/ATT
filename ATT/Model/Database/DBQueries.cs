@@ -8,6 +8,9 @@ using Type = ATT.Model.Models.Type;
 
 namespace ATT.Model.Database
 {
+    // Разобраться со сроком годности
+    // Разобраться с запросом на добавление накладной
+    // Добавить поиск по накладным
     class DBQueries
     {
         #region Catalog
@@ -334,6 +337,112 @@ namespace ATT.Model.Database
             }
             DBHelper.GetConnect().Close();
             return items;
+        }
+        #endregion
+
+        #region Invoice
+        public static List<InvoiceATT> GetInvoices()
+        {
+            List<InvoiceATT> items = new List<InvoiceATT>();
+            string query = "SELECT invoice_att.id, stock.kladr, person.fio as person, invoice_att.date, invoice_att.taken " +
+                "FROM invoice_att, stock, person " +
+                "WHERE invoice_att.stock = stock.id AND stock.chief = person.id";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                InvoiceATT item = new InvoiceATT()
+                {
+                    id = reader.GetInt32(0),
+                    kladr = reader.GetString(1),
+                    person = reader.GetString(2),
+                    date = reader.GetString(3).Split(' ')[0],
+                };
+                if (reader.GetBoolean(4))
+                {
+                    item.taken = "Да";
+                }
+                else
+                {
+                    item.taken = "Нет";
+                }
+                items.Add(item);
+            }
+            DBHelper.GetConnect().Close();
+            return items;
+        }
+
+        public static List<RecordATT> GetRecords(int invoice)
+        {
+            List<RecordATT> items = new List<RecordATT>();
+            string query = "SELECT record_att.id, product.title, active.title as active, record_att.count, creator.title as creator, " +
+                "record_att.price as subprice, (record_att.price * 1.13) as price, record_att.date " +
+                "FROM invoice_att, record_att, product, creator, active " +
+                "WHERE record_att.invoice = invoice_att.id AND record_att.product = product.id AND " +
+                $"product.creator = creator.id AND product.active = active.id AND invoice_att.id = {invoice}";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add( new RecordATT()
+                {
+                    id = reader.GetInt32(0),
+                    product = reader.GetString(1),
+                    active = reader.GetString(2),
+                    count = reader.GetInt32(3),
+                    creator = reader.GetString(4),
+                    subprice = reader.GetDouble(5),
+                    price = reader.GetDouble(6),
+                    date = reader.GetString(7).Split(' ')[0],
+                });
+            }
+            DBHelper.GetConnect().Close();
+            return items;
+        }
+
+        public static bool AddToATT(int att, InvoiceATT invoice, List<RecordATT> products)
+        {
+            int cheque_id = -1;
+            string query_insertCheque = $"";
+            string query_lastId = "SELECT MAX(id) from cheque";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query_insertCheque;
+            if (command.ExecuteNonQuery() == 0)
+            {
+                return false;
+            }
+            command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query_lastId;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                cheque_id = reader.GetInt32(0);
+            }
+            reader.Close();
+            foreach (var item in products)
+            {
+                string query_updateCount = $"UPDATE att_list SET att_list.count = {item.count - item.sell} WHERE att_list.att = {att} AND att_list.id = {item.id}";
+                command.CommandText = query_updateCount;
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    return false;
+                }
+                reader.Close();
+                string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell * item.price})";
+                command.CommandText = query_insertSale;
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    return false;
+                }
+                reader.Close();
+            }
+            DBHelper.GetConnect().Close();
+            return true;
         }
         #endregion
     }
