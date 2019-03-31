@@ -9,6 +9,7 @@ namespace ATT.Model.Models
     class RecordATT
     {
         public int id { get; set; }
+        public string product_id { get; set; }
         public string product { get; set; }
         public string active { get; set; }
         public int count { get; set; }

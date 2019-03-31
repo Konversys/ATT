@@ -64,7 +64,17 @@ namespace ATT
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-
+            DBQueries.AddToATT(MainWindow.att, invoice);
+            UpdateType();
+            _table.ItemsSource = DBQueries.GetRecords(invoice.id);
+            if (invoice.taken == "Нет")
+            {
+                submit.IsEnabled = true;
+            }
+            else
+            {
+                submit.IsEnabled = false;
+            }
         }
     }
 }

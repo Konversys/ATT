@@ -103,6 +103,7 @@
     <Compile Include="Model\Models\Catalog\Type.cs" />
     <Compile Include="Model\Models\RecordATT.cs" />
     <Compile Include="Model\Models\Sale.cs" />
+    <Compile Include="Model\Models\Temp\ProductJoinRecord.cs" />
     <Compile Include="Sell.xaml.cs">
       <DependentUpon>Sell.xaml</DependentUpon>
     </Compile>
