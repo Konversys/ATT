@@ -11,6 +11,7 @@ namespace ATT.Model.Models
         //public int Id { get; set; }
         public string Наименование { get; set; }
         public string Действующее__вещество { get; set; }
+        public string Срок__годности { get; set; }
         public string Упаковка { get; set; }
         public int Количество { get; set; }
         public string Ед__измерения { get; set; }

@@ -29,15 +29,16 @@ namespace ATT.Model.Database
                     //Id = reader.GetInt32(0),
                     Наименование = reader.GetString(1),
                     Действующее__вещество = reader.GetString(2),
-                    Упаковка = reader.GetString(3),
-                    Количество = reader.GetInt32(4),
-                    Ед__измерения = reader.GetString(5),
-                    Производитель = reader.GetString(6),
-                    Форма__выпуска = reader.GetString(7),
-                    Тип__медикамента = reader.GetString(8),
-                    Штрихкод = reader.GetString(10),
+                    Срок__годности = reader.GetString(3).Split(' ')[0],
+                    Упаковка = reader.GetString(4),
+                    Количество = reader.GetInt32(5),
+                    Ед__измерения = reader.GetString(6),
+                    Производитель = reader.GetString(7),
+                    Форма__выпуска = reader.GetString(8),
+                    Тип__медикамента = reader.GetString(9),
+                    Штрихкод = reader.GetString(11),
                 };
-                if (reader.GetBoolean(9))
+                if (reader.GetBoolean(10))
                     product.Рецепт = "Да";
                 else
                     product.Рецепт = "Нет";
@@ -160,7 +161,7 @@ namespace ATT.Model.Database
             string query = "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
                 "product.count as inside, measures.title as measures, creator.title as creator, " +
                 "form.title as form, type.title as type, product.recipe as recipe, att_list.count as count, " +
-                "att_list.price as price, att_list.date as date, att_list.valid as valid, att_list.arrival as arrival " +
+                "att_list.price as price, att_list.date as date, ADDDATE(att_list.date, product.valid) as valid, att_list.arrival as arrival " +
                 "FROM att_list, product, box, creator, form, type, active, measures " +
                 "WHERE att_list.product = product.id AND product.active = active.id " +
                 "AND product.box = box.id AND product.creator = creator.id " +
@@ -202,7 +203,7 @@ namespace ATT.Model.Database
             string query = "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
                 "product.count as inside, measures.title as measures, creator.title as creator, " +
                 "form.title as form, type.title as type, product.recipe as recipe, att_list.count as count, " +
-                "att_list.price as price, att_list.date as date, att_list.valid as valid, att_list.arrival as arrival " +
+                "att_list.price as price, att_list.date as date, ADDDATE(att_list.date, product.valid) as valid, att_list.arrival as arrival " +
                 "FROM att_list, product, box, creator, form, type, active, measures " +
                 "WHERE att_list.product = product.id AND product.active = active.id " +
                 "AND product.box = box.id AND product.creator = creator.id " +
@@ -404,46 +405,46 @@ namespace ATT.Model.Database
             return items;
         }
 
-        public static bool AddToATT(int att, InvoiceATT invoice, List<RecordATT> products)
-        {
-            int cheque_id = -1;
-            string query_insertCheque = $"";
-            string query_lastId = "SELECT MAX(id) from cheque";
-            DBHelper.GetConnect().Open();
-            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
-            command.CommandText = query_insertCheque;
-            if (command.ExecuteNonQuery() == 0)
-            {
-                return false;
-            }
-            command = DBHelper.GetConnect().CreateCommand();
-            command.CommandText = query_lastId;
-            DbDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                cheque_id = reader.GetInt32(0);
-            }
-            reader.Close();
-            foreach (var item in products)
-            {
-                string query_updateCount = $"UPDATE att_list SET att_list.count = {item.count - item.sell} WHERE att_list.att = {att} AND att_list.id = {item.id}";
-                command.CommandText = query_updateCount;
-                if (command.ExecuteNonQuery() == 0)
-                {
-                    return false;
-                }
-                reader.Close();
-                string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell * item.price})";
-                command.CommandText = query_insertSale;
-                if (command.ExecuteNonQuery() == 0)
-                {
-                    return false;
-                }
-                reader.Close();
-            }
-            DBHelper.GetConnect().Close();
-            return true;
-        }
+        //public static bool AddToATT(int att, InvoiceATT invoice, List<RecordATT> products)
+        //{
+        //    int cheque_id = -1;
+        //    string query_insertCheque = $"";
+        //    string query_lastId = "SELECT MAX(id) from cheque";
+        //    DBHelper.GetConnect().Open();
+        //    MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+        //    command.CommandText = query_insertCheque;
+        //    if (command.ExecuteNonQuery() == 0)
+        //    {
+        //        return false;
+        //    }
+        //    command = DBHelper.GetConnect().CreateCommand();
+        //    command.CommandText = query_lastId;
+        //    DbDataReader reader = command.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        cheque_id = reader.GetInt32(0);
+        //    }
+        //    reader.Close();
+        //    foreach (var item in products)
+        //    {
+        //        string query_updateCount = $"UPDATE att_list SET att_list.count = {item.count - item.sell} WHERE att_list.att = {att} AND att_list.id = {item.id}";
+        //        command.CommandText = query_updateCount;
+        //        if (command.ExecuteNonQuery() == 0)
+        //        {
+        //            return false;
+        //        }
+        //        reader.Close();
+        //        string query_insertSale = $"INSERT INTO sale (product, cheque, count, price) VALUES({item.id}, {cheque_id}, {item.sell}, {item.sell * item.price})";
+        //        command.CommandText = query_insertSale;
+        //        if (command.ExecuteNonQuery() == 0)
+        //        {
+        //            return false;
+        //        }
+        //        reader.Close();
+        //    }
+        //    DBHelper.GetConnect().Close();
+        //    return true;
+        //}
         #endregion
     }
 }

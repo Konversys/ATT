@@ -11,7 +11,7 @@ namespace ATT.Model.Database
 {
     class DBHelper
     {
-        readonly static string ConnectionString = "server=konverdev.ru;user=admin;password=1111;database=apteka2v";
+        readonly static string ConnectionString = "server=konverdev.ru;user=admin;password=1111;database=apteka2v;";
         static MySqlConnection Connection;
         public static MySqlConnection GetConnect()
         {
