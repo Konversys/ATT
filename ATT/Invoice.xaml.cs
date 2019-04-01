@@ -32,13 +32,13 @@ namespace ATT
             switch (((ComboBoxItem)_type.SelectedItem).Content.ToString())
             {
                 case "Обработанные":
-                    invoices.ItemsSource = DBQueries.GetInvoices().Where(x => x.taken == "Да");
+                    invoices.ItemsSource = DBQueries.GetInvoices(MainWindow.att).Where(x => x.taken == "Да");
                     break;
                 case "Ожидающие":
-                    invoices.ItemsSource = DBQueries.GetInvoices().Where(x => x.taken == "Нет");
+                    invoices.ItemsSource = DBQueries.GetInvoices(MainWindow.att).Where(x => x.taken == "Нет");
                     break;
                 default:
-                    invoices.ItemsSource = DBQueries.GetInvoices();
+                    invoices.ItemsSource = DBQueries.GetInvoices(MainWindow.att);
                     break;
             }
         }

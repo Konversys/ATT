@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Вход в торговую точку" Height="150" Width="280">
     <Grid>
-        <TextBox x:Name="tabel" HorizontalAlignment="Left" Height="23" Margin="135,51,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.299,0.377"/>
+        <TextBox x:Name="tabel" HorizontalAlignment="Left" Text="70433661" Height="23" Margin="135,51,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.299,0.377"/>
         <ComboBox x:Name="att" HorizontalAlignment="Left" Margin="135,14,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="25,20,0,0" TextWrapping="Wrap" Text="Выберите АТТ" VerticalAlignment="Top" RenderTransformOrigin="0.803,0.638"/>
         <TextBlock HorizontalAlignment="Left" Margin="25,58,0,0" TextWrapping="Wrap" Text="Табельный номер" VerticalAlignment="Top" RenderTransformOrigin="0.803,0.638"/>

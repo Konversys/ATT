@@ -31,12 +31,21 @@ namespace ATT
             int person = DBQueries.CheckTabel(tabel.Text);
             if (person >= 0)
             {
+                if (att.SelectedItem == null)
+                {
+                    MessageBox.Show("Выберите АТТ", "Ошибка");
+                    return;
+                }
                 string select = att.SelectedItem.ToString().Split(' ')[0];
-                MainWindow window = new MainWindow();
                 MainWindow.att = int.Parse(select);
                 MainWindow.person = person;
+                MainWindow window = new MainWindow();
                 window.Show();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Сотрудника с таким табельным номером не существует", "Ошибка");
             }
         }
     }

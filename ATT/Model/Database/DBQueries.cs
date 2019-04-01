@@ -360,12 +360,12 @@ namespace ATT.Model.Database
         #endregion
 
         #region Invoice
-        public static List<InvoiceATT> GetInvoices()
+        public static List<InvoiceATT> GetInvoices(int att)
         {
             List<InvoiceATT> items = new List<InvoiceATT>();
             string query = "SELECT invoice_att.id, stock.kladr, person.fio as person, invoice_att.date, invoice_att.taken " +
                 "FROM invoice_att, stock, person " +
-                "WHERE invoice_att.stock = stock.id AND stock.chief = person.id";
+                $"WHERE invoice_att.stock = stock.id AND stock.chief = person.id AND invoice_att.att = {att}";
             DBHelper.GetConnect().Open();
             MySqlCommand command = DBHelper.GetConnect().CreateCommand();
             command.CommandText = query;
