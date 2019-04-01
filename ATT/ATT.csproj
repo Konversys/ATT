@@ -93,6 +93,7 @@
     <Compile Include="Invoice.xaml.cs">
       <DependentUpon>Invoice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Models\ATT.cs" />
     <Compile Include="Model\Models\Catalog\Active.cs" />
     <Compile Include="Model\Models\Catalog\Creator.cs" />
     <Compile Include="Model\Models\Catalog\Deliver.cs" />

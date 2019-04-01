@@ -7,7 +7,7 @@
         Title="Торговля" Height="800" Width="1305" Activated="Window_Activated">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1194" Margin="0,0,-0.4,0">
-            <MenuItem Header="Сменить АТТ"/>
+            <MenuItem Header="Сменить АТТ" Click="Change_ATT"/>
             <MenuItem Header="Продажи">
                 <MenuItem Header="Движение товара"/>
                 <MenuItem Header="Чеки" Click="History_Click" />
@@ -61,7 +61,8 @@
                 <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=arrival}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock x:Name="total" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="11,728,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock x:Name="_person" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="10,728,0,0" VerticalAlignment="Top" Width="Auto"/>
+        <TextBlock x:Name="total" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" TextWrapping="Wrap" Margin="350,728,0,0" VerticalAlignment="Top" Width="Auto"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,437,0,0" TextWrapping="Wrap" Text="Формирование чека" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>
         <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="1149,725,0,0" VerticalAlignment="Top" Width="130" Height="30" Click="Button_Click"/>
         <TextBlock x:Name="title_date" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Top" Height="29" Width="284"/>

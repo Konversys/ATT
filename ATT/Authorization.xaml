@@ -11,6 +11,6 @@
         <ComboBox x:Name="att" HorizontalAlignment="Left" Margin="135,14,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="25,20,0,0" TextWrapping="Wrap" Text="Выберите АТТ" VerticalAlignment="Top" RenderTransformOrigin="0.803,0.638"/>
         <TextBlock HorizontalAlignment="Left" Margin="25,58,0,0" TextWrapping="Wrap" Text="Табельный номер" VerticalAlignment="Top" RenderTransformOrigin="0.803,0.638"/>
-        <Button Content="Войти" HorizontalAlignment="Left" Margin="100,90,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Войти" HorizontalAlignment="Left" Margin="100,90,0,0" VerticalAlignment="Top" Width="75" Click="Login_Click"/>
     </Grid>
 </Window>

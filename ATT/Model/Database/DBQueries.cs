@@ -283,6 +283,23 @@ namespace ATT.Model.Database
             DBHelper.GetConnect().Close();
             return true;
         }
+
+        public static string GetPerson(int person_id)
+        {
+            List<ATTItem> items = new List<ATTItem>();
+            string query = $"SELECT fio FROM person WHERE person.id = {person_id}";
+            DBHelper.GetConnect().Open();
+            string data = "Неизвестно";
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                data = reader.GetString(0);
+            }
+            DBHelper.GetConnect().Close();
+            return data;
+        }
         #endregion
 
         #region History
@@ -444,6 +461,46 @@ namespace ATT.Model.Database
             command.ExecuteNonQuery();
             DBHelper.GetConnect().Close();
             return true;
+        }
+        #endregion
+
+        #region ATT
+        public static List<ATTItem> GetATTs()
+        {
+            List<ATTItem> items = new List<ATTItem>();
+            string query = "SELECT att.id, att.kladr, person.fio FROM att, person WHERE att.chief = person.id";
+            DBHelper.GetConnect().Open();
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(new ATTItem()
+                {
+                    id = reader.GetInt32(0),
+                    kladr = reader.GetString(1),
+                    chief = reader.GetString(2),
+                });
+            }
+            DBHelper.GetConnect().Close();
+            return items;
+        }
+
+        public static int CheckTabel(string person_tabel)
+        {
+            List<ATTItem> items = new List<ATTItem>();
+            string query = $"SELECT * FROM person WHERE person.tabel = {person_tabel}";
+            DBHelper.GetConnect().Open();
+            int id = -1;
+            MySqlCommand command = DBHelper.GetConnect().CreateCommand();
+            command.CommandText = query;
+            DbDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetInt32(0);
+            }
+            DBHelper.GetConnect().Close();
+            return id;
         }
         #endregion
     }

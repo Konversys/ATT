@@ -22,8 +22,7 @@ namespace ATT
         {
             sellList = new List<ProductATT>();
             InitializeComponent();
-            att = 2;
-            person = 4;
+            _person.Text = DBQueries.GetPerson(person);
             title_date.Text = "Остатки на " + DateTime.Now.ToLongDateString();
             table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
         }
@@ -44,6 +43,8 @@ namespace ATT
         private void Window_Activated(object sender, EventArgs e)
         {
             UpdateWa();
+            title_date.Text = "Остатки на " + DateTime.Now.ToLongDateString();
+            table.ItemsSource = DBQueries.GetProductsATT(att).Where(x => x.count > 0);
         }
 
         private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,6 +116,13 @@ namespace ATT
         {
             Invoice window = new Invoice();
             window.Show();
+        }
+
+        private void Change_ATT(object sender, RoutedEventArgs e)
+        {
+            Authorization window = new Authorization();
+            window.Show();
+            this.Close();
         }
     }
 }

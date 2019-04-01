@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATT.Model.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,21 @@ namespace ATT
         public Authorization()
         {
             InitializeComponent();
+            att.ItemsSource = DBQueries.GetATTs().Select(x => x.id + " " + x.kladr + " " + x.chief);
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            int person = DBQueries.CheckTabel(tabel.Text);
+            if (person >= 0)
+            {
+                string select = att.SelectedItem.ToString().Split(' ')[0];
+                MainWindow window = new MainWindow();
+                MainWindow.att = int.Parse(select);
+                MainWindow.person = person;
+                window.Show();
+                this.Close();
+            }
         }
     }
 }
