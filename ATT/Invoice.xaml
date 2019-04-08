@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ATT"
         mc:Ignorable="d"
-        Title="Накладные" Height="400" Width="1150">
+        Title="Накладные" Height="400" Width="1150" Loaded="Window_Loaded">
     <Grid>
         <DataGrid x:Name="invoices" HorizontalAlignment="Left" Height="312" Margin="12,46,0,0" VerticalAlignment="Top" Width="351" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Invoices_MouseDoubleClick">
             <DataGrid.Columns>

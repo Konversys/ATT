@@ -48,5 +48,10 @@ namespace ATT
                 MessageBox.Show("Сотрудника с таким табельным номером не существует", "Ошибка");
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            att.SelectedIndex = 0;
+        }
     }
 }

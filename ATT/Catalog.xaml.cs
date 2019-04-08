@@ -146,5 +146,10 @@ namespace ATT
                     break;
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _catalog.SelectedIndex = 0;
+        }
     }
 }

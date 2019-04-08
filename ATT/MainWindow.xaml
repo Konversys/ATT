@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Торговля" Height="800" Width="1305" Activated="Window_Activated">
+        Title="Торговля" Height="800" Width="1305" Activated="Window_Activated" Loaded="Window_Loaded">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1194" Margin="0,0,-0.4,0">
             <MenuItem Header="Сменить АТТ" Click="Change_ATT"/>

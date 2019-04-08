@@ -76,5 +76,10 @@ namespace ATT
                 submit.IsEnabled = false;
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _type.SelectedIndex = 0;
+        }
     }
 }

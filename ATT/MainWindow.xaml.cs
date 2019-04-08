@@ -124,5 +124,10 @@ namespace ATT
             window.Show();
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _type.SelectedIndex = 0;
+        }
     }
 }
