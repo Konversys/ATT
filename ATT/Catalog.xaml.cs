@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ATT
 {
@@ -58,14 +59,12 @@ namespace ATT
             _find.Text = "";
         }
 
-        private void _find_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateTable();
-        }
-
         private void _type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateTable();
+            if (_find.Text != "")
+            {
+                UpdateTable();
+            }
         }
 
         void UpdateTable()
@@ -150,6 +149,14 @@ namespace ATT
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _catalog.SelectedIndex = 0;
+        }
+
+        private void _find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateTable();
+            }
         }
     }
 }

@@ -49,13 +49,12 @@ namespace ATT
 
         private void Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Update();
+            if (_find.Text != "")
+            {
+                Update();
+            }
         }
 
-        private void _find_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Update();
-        }
         void UpdateWa()
         {
             table_sell.ItemsSource = new List<ProductATT>();
@@ -128,6 +127,14 @@ namespace ATT
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _type.SelectedIndex = 0;
+        }
+
+        private void _find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Update();
+            }
         }
     }
 }

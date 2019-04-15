@@ -17,9 +17,9 @@
         </DataGrid>
         <Frame HorizontalAlignment="Left" Height="378" Margin="368,0,0,-9" BorderThickness="1" BorderBrush="Aqua" VerticalAlignment="Top" Width="762"/>
         <ComboBox x:Name="_type" HorizontalAlignment="Right" Margin="0,13,972,0" VerticalAlignment="Top" Width="150" SelectionChanged="Type_SelectionChanged">
-            <ComboBoxItem Content="Все"/>
-            <ComboBoxItem Content="Ожидающие"/>
-            <ComboBoxItem Content="Обработанные"/>
+            <ComboBoxItem Content="Все накладные"/>
+            <ComboBoxItem Content="Ожидающие накладные"/>
+            <ComboBoxItem Content="Обработанные обработанные"/>
         </ComboBox>
         <TextBlock Text="Стандартная надбавка: 13%" HorizontalAlignment="Left" Margin="376,322,0,11"/>
         <DataGrid x:Name="_table" HorizontalAlignment="Left" Height="270" Margin="376,46,0,0" VerticalAlignment="Top" Width="753" AutoGenerateColumns="False" IsReadOnly="True">
@@ -34,14 +34,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="submit" Content="Подтвердить" HorizontalAlignment="Left" Margin="1033,329,0,0" VerticalAlignment="Top" Width="95" Height="28" Click="Submit_Click"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,13,173.6,0" Height="22" VerticalAlignment="Top" Width="200"/>
-        <ComboBox HorizontalAlignment="Right" Margin="0,13,13.6,0" VerticalAlignment="Top" Width="150">
-            <ComboBoxItem IsSelected="True">
-                <TextBlock Text="По наименованию"/>
-            </ComboBoxItem>
-            <TextBlock Text="По форме выпуска"/>
-            <TextBlock Text="По типу медикамента"/>
-            <TextBlock Text="По производителю"/>
+        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,13,173.6,0" Height="22" VerticalAlignment="Top" Width="200" KeyDown="TextBox_KeyDown"/>
+        <ComboBox x:Name="type" HorizontalAlignment="Right" Margin="0,13,13.6,0" VerticalAlignment="Top" Width="150" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem Content="По наименованию"/>
+            <ComboBoxItem Content="По производителю"/>
         </ComboBox>
     </Grid>
 </Window>

@@ -423,7 +423,6 @@ namespace ATT.Model.Database
             DBHelper.GetConnect().Close();
             return items;
         }
-
         public static bool AddToATT(int att, InvoiceATT invoice, double windup = 1.13)
         {
             // Список ID продуктов, которые содержатся с списке на АТТ

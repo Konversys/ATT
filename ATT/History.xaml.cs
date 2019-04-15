@@ -70,17 +70,20 @@ namespace ATT
         {
             Update();
         }
-
-        private void Find_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Update();
-        }
-
+ 
         private void History_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             cheque = ((ChequeView)(ItemsControl.ContainerFromElement((DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow).Item);
             Cheque window = new Cheque();
             window.Show();
+        }
+
+        private void Find_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Update();
+            }
         }
     }
 }

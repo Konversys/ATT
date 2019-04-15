@@ -80,6 +80,41 @@ namespace ATT
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _type.SelectedIndex = 0;
+            type.SelectedIndex = 0;
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                UpdateFind();
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (find.Text != "")
+            {
+                UpdateFind();
+            }
+        }
+
+        private void UpdateFind()
+        {
+            switch (((ComboBoxItem)type.SelectedItem).Content.ToString())
+            {
+                case "По наименованию":
+                    _table.ItemsSource = DBQueries.GetRecords(invoice.id).Where(x => x.product.Contains(find.Text));
+                    break;
+                case "По действующему веществу":
+                    _table.ItemsSource = DBQueries.GetRecords(invoice.id).Where(x => x.active.Contains(find.Text));
+                    break;
+                case "По производителю":
+                    _table.ItemsSource = DBQueries.GetRecords(invoice.id).Where(x => x.creator.Contains(find.Text));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

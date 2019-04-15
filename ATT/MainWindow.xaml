@@ -8,12 +8,11 @@
     <Grid>
         <Menu HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="1194" Margin="0,0,-0.4,0">
             <MenuItem Header="Сменить АТТ" Click="Change_ATT"/>
-            <MenuItem Header="Продажи">
-                <MenuItem Header="Движение товара"/>
+            <MenuItem Header="Учет">
+                <MenuItem Header="Справочники" Click="Catalog_Click"/>
+                <MenuItem Header="Накладные" Click="Invoice_Click" />
                 <MenuItem Header="Чеки" Click="History_Click" />
             </MenuItem>
-            <MenuItem Header="Справочники" Click="Catalog_Click"/>
-            <MenuItem Header="Накладные" Click="Invoice_Click" />
         </Menu>
         <DataGrid x:Name="table" HorizontalAlignment="Left" Height="350" Margin="10,60,0,0" VerticalAlignment="Top" Width="1274"  AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="Row_DoubleClick">
             <DataGrid.Columns>
@@ -33,7 +32,7 @@
                 <DataGridTextColumn Header="Дата поставки" Binding="{Binding Path=arrival}" Width="90" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,25,170,0" Height="22" VerticalAlignment="Top" Width="200" TextChanged="_find_TextChanged"/>
+        <TextBox x:Name="_find" HorizontalAlignment="Right" Margin="0,25,170,0" Height="22" VerticalAlignment="Top" Width="200" KeyDown="_find_KeyDown"/>
         <ComboBox x:Name="_type"  HorizontalAlignment="Right" Margin="0,25,10,0" VerticalAlignment="Top" Width="150" SelectionChanged="Type_SelectionChanged">
             <ComboBoxItem Content="По наименованию"/>
             <ComboBoxItem Content="По действующему веществу"/>

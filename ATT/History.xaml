@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Чеки" Height="440" Width="450">
     <Grid>
-        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,45,180,0" Height="22" VerticalAlignment="Top" Width="247" TextChanged="Find_TextChanged"/>
+        <TextBox x:Name="find" HorizontalAlignment="Right" Margin="0,45,180,0" Height="22" VerticalAlignment="Top" Width="247" KeyDown="Find_KeyDown"/>
         <ComboBox x:Name="type" HorizontalAlignment="Right" Margin="0,45,5,0" VerticalAlignment="Top" Width="150">
             <ComboBoxItem Content="По кассиру" IsSelected="True"/>
         </ComboBox>
