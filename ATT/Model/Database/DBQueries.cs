@@ -201,7 +201,8 @@ namespace ATT.Model.Database
         public static List<ProductATT> GetProductsATT(int att)
         {
             List<ProductATT> products = new List<ProductATT>();
-            string query = "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
+            string query = 
+                "SELECT att_list.id, product.title, active.title as active, box.title as box, " +
                 "product.count as inside, measures.title as measures, creator.title as creator, " +
                 "form.title as form, type.title as type, product.recipe as recipe, att_list.count as count, " +
                 "att_list.price as price, att_list.date as date, ADDDATE(att_list.date, product.valid) as valid, att_list.arrival as arrival " +
@@ -209,7 +210,7 @@ namespace ATT.Model.Database
                 "WHERE att_list.product = product.id AND product.active = active.id " +
                 "AND product.box = box.id AND product.creator = creator.id " +
                 "AND product.measures = measures.id AND product.form = form.id " +
-                "AND product.type = type.id AND att_list.att = " + att;
+                "AND product.type = type.id AND NOT ISNULL(ADDDATE(att_list.date, product.valid)) AND att_list.att = " + att;
             DBHelper.GetConnect().Open();
             MySqlCommand command = DBHelper.GetConnect().CreateCommand();
             command.CommandText = query;
@@ -379,11 +380,11 @@ namespace ATT.Model.Database
                     person = reader.GetString(2),
                     date = reader.GetString(3).Split(' ')[0],
                 };
-                if (reader.GetBoolean(4))
+                if (reader.GetInt32(4) == 1)
                 {
                     item.taken = "Да";
                 }
-                else
+                else if (reader.GetInt32(4) == 0)
                 {
                     item.taken = "Нет";
                 }

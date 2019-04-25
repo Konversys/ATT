@@ -23,7 +23,7 @@ namespace ATT
         public Authorization()
         {
             InitializeComponent();
-            att.ItemsSource = DBQueries.GetATTs().Select(x => x.id + " " + x.kladr + " " + x.chief);
+            att.ItemsSource = DBQueries.GetATTs().Select(x => $"{x.id} {x.kladr} {x.chief}");
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)

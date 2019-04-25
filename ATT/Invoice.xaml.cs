@@ -29,12 +29,12 @@ namespace ATT
 
         void UpdateType()
         {
-            switch (((ComboBoxItem)_type.SelectedItem).Content.ToString())
+            switch (_type.SelectedIndex)
             {
-                case "Обработанные":
+                case 1:
                     invoices.ItemsSource = DBQueries.GetInvoices(MainWindow.att).Where(x => x.taken == "Да");
                     break;
-                case "Ожидающие":
+                case 2:
                     invoices.ItemsSource = DBQueries.GetInvoices(MainWindow.att).Where(x => x.taken == "Нет");
                     break;
                 default:
